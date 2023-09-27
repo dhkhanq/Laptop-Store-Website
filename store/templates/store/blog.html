@@ -1,0 +1,195 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block title %}Blogs{% endblock title %}
+
+{% block content %}
+
+<style>
+    body{
+        font-size: 16px;
+    }
+    #blog{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 40px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .blog-heading{
+        display: flex;
+        justify-content: left;
+        align-items:center;
+        flex-direction: column;
+    }
+
+    .blog-heading span{
+        color: #0B9ED9;
+    }
+
+    .blog-heading h3{
+        font-size: 2.4rem;
+        color: #2b2b2b;
+        font-weight: 600;
+    }
+
+    .blog-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0px;
+        flex-wrap: wrap;
+    }
+
+    .blog-box{
+        width: 350px;
+        background-color: #ffffff;
+        border: 1px solid #ececec;
+        margin: 20px;
+    }
+
+    .blog-img{
+        width: 100%;
+        height: auto;
+    }
+
+    .blog-img img{
+        width: 100%;
+        max-height: 200px;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .blog-text{
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .blog-text span{
+        color: #0B9ED9;
+        font-size: 0.9rem;
+        margin-bottom: 2px;
+    }
+
+    .blog-text .blog-title{
+        /* font-size: 1.3rem; */
+        font-weight: 500;
+        color: #272727;
+    }
+
+    .blog-text .blog-title:hover{
+        color: #0B9ED9;
+        transition:  all ease 0.3s;
+    }
+
+    .blog-text p{
+        color: #9b9b9b;
+        font-size: 1.4rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 10px 0px;
+    }
+
+    .blog-text a{
+        color: #0f0f0f;
+    }
+
+    .blog-text a:hover{
+        color:#0B9ED9;
+        transition: all ease 0.3s;
+    }
+
+     
+</style>
+
+<section style="padding: 100px 0 32px 0;" id="blog">
+    <!-- <div class="blog-heading">
+        <span>My Recent Posts</span>
+        <h3>My Blog</h3>
+    </div> -->
+
+    <div class="blog-container">
+        <div class="blog-box">
+            <div class="blog-img">
+                <img src="{% static 'images/16-inch-magsafe-3.jpg' %}" alt="">
+            </div>
+            <div class="blog-text">
+                <span>10 July 2021 / Admin</span>
+                <a href="#" class="blog-title">Người dùng MacBook Pro 16 inch 2021 phàn nàn lỗi sạc MagSafe 3 khi đóng máy</a>
+                <p>Mới đây, một số chủ sở hữu MacBook Pro 16 inch 2021 vừa báo cáo vấn đề về việc sạc MagSafe 3 đôi khi không cung cấp mức sạc dự kiến ​​khi máy Mac của họ bị tắt và đóng nắp.</p>
+                <a href="#">Read More</a>
+            </div>
+        </div>
+
+        <div class="blog-box">
+            <div class="blog-img">
+                <img src="{% static 'images/windows11.jpg' %}" alt="">
+            </div>
+            <div class="blog-text">
+                <span>10 July 2021 / Admin</span>
+                <a href="#" class="blog-title">Cách sửa lỗi ứng dụng Settings trên Windows 11</a>
+                <p>Nhiều người dùng cho biết ứng dụng Settings bị lỗi, treo, kích hoạt không lên … và đây là một lỗi khá lớn. Nếu bạn gặp phải lỗi tương tự với Settings thì dưới đây là cách khắc phục cần biết.</p>
+                <a href="#">Read More</a>
+            </div>
+        </div>
+
+        <div class="blog-box">
+            <div class="blog-img">
+                <img src="{% static 'images/home_windows_11.jpg' %}" alt="">
+            </div>
+            <div class="blog-text">
+                <span>10 July 2021 / Admin</span>
+                <a href="#" class="blog-title">6 mẹo để cải thiện thời lượng pin trên laptop Windows 11</a>
+                <p>Chỉ với một số tinh chỉnh, cài đặt đơn giản là bạn có thể tăng thêm thời lượng sử dụng pin cho các mẫu laptop đang chạy Windows 11.</p>
+                <a href="#">Read More</a>
+            </div>
+        </div>
+
+        <div class="blog-box">
+            <div class="blog-img">
+                <img src="{% static 'images/AMD.jpg' %}" alt="">
+            </div>
+            <div class="blog-text">
+                <span>10 July 2021 / Admin</span>
+                <a href="#" class="blog-title">Lộ tin CPU AMD Ryzen Renoir-X sẽ là đối thủ nặng ký của Intel Alder Lake</a>
+                <p>Theo leaker nổi tiếng momomo_us, AMD sẽ không để Intel chiếm lấy ánh hào quang với thế hệ Core i3 “Alder Lake”. Cụ thể hơn, AMD được cho là sắp tung ra chip Ryzen 3 và Ryzen 5 với tên mã “Renoir-X” dành cho phân khúc bình dân để đối đầu với Intel. Theo tin đồn thì đây là những vi xử lý được “refresh” từ dòng Ryzen 4000G nhưng sẽ không có iGPU.</p>
+                <a href="#">Read More</a>
+            </div>
+        </div>
+
+        <div class="blog-box">
+            <div class="blog-img">
+                <img src="{% static 'images/Lo-tin-RTX-3090-Ti-dung-VRAM-sieu-nhanh-bang-thong-hon-1000-GBs-1-218x150.jpg' %}" alt="">
+            </div>
+            <div class="blog-text">
+                <span>10 July 2021 / Admin</span>
+                <a href="#" class="blog-title">Lộ tin RTX 3090 Ti dùng VRAM siêu nhanh, băng thông hơn 1000 GB/s</a>
+                <p>Theo một số nguồn tin thì card đồ họa đầu bảng sắp ra mắt của Nvidia, GeForce RTX 3090 Ti (một số nguồn tin gọi là RTX 3090 SUPER) có thể là card đồ họa GeForce có VRAM nhanh nhất từng được thiết kế.</p>
+                <a href="#">Read More</a>
+            </div>
+        </div>
+
+        <div class="blog-box">
+            <div class="blog-img">
+                <img src="{% static 'images/teams-onedrive.jpg' %}" alt="">
+            </div>
+            <div class="blog-text">
+                <span>10 July 2021 / Admin</span>
+                <a href="#" class="blog-title">Loạt công ty châu Âu kiện Microsoft vì kèm OneDrive, Tea</a>
+                <p>Microsoft bị cáo buộc là đã lạm dụng thế mạnh của mình trong mảng hệ điều hành để tích hợp Teams và OneDrive vào trong Windows 11.</p>
+                <a href="#">Read More</a>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <a style="padding: 7px; background-color: #f1f1f1;" href=""> Load more</a>
+    </div>
+</section>
+
+{% endblock content %}

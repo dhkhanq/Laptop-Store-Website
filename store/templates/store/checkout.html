@@ -1,0 +1,178 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block title %}Checkout{% endblock title %}
+{% block content %}
+
+        <section class="payment-container">
+            <div class="payment-box">
+
+                <div class="payment-left">
+                    <div class="box-element" id="form-wrapper">
+
+                        <form id="form">
+                            <div id="user-info-1">
+                                <p>Customer Information:</p>
+                                <div class="form-field">
+                                    <input required class="form-control" type="text" name="name" placeholder="Name...">
+                                </div>
+                                <div class="form-field">
+                                    <input required class="form-control" type="email" name="email" placeholder="Email...">
+                                </div>
+                            </div>
+
+                            <!-- <div id="user-info-2">
+                                <p>Customer Information:</p>
+                                <div class="form-field">
+                                    <p>Name: {{request.user.customer.name}}</p>
+                                </div>
+                                <div class="form-field">
+                                    <p>Email: {{request.user.customer.email}}</p>
+                                </div>
+                            </div> -->
+                            
+                            <div id="shipping-info">
+                                <!-- <hr> -->
+                                <p>Shipping Information:</p>
+                                <!-- <hr> -->
+                                <div class="form-field">
+                                    <input class="form-control" type="text" name="address" placeholder="Address..">
+                                </div>
+                                <div class="form-field">
+                                    <input class="form-control" type="text" name="city" placeholder="City..">
+                                </div>
+                                <div class="form-field">
+                                    <input class="form-control" type="text" name="district" placeholder="District..">
+                                </div>
+                                <div class="form-field">
+                                    <input class="form-control" type="text" name="zipcode" placeholder="Zip code..">
+                                </div>
+                                
+
+                                <!-- <div style="display: inline-block;">
+                                    <input type="radio" id="radio2" name="">
+                                    <label for="radio2">Nhan hang tai cua hang</label>
+                                </div> -->
+                                <!-- <div class="form-field">
+                                    <input class="form-control" type="text" name="country" placeholder="Zip code..">
+                                </div> -->
+                            </div>
+
+                            <!-- <hr> -->
+                            <!-- <input id="form-button" class="continue-btn" type="submit" value="Continue"> -->
+                        </form>
+
+                        <div style="color: #666;" id="payment-info">
+                            <div class="payment-method">
+                                <p>Payment Method:</p>
+                                    <div>
+                                        <input style="margin: 5px;" type="radio" name="radio1">
+                                        <label for="radio1">Thanh toán bằng tiền mặt khi nhận hàng</label>
+                                    </div>
+                                    <div>
+                                        <input style="margin: 5px;" type="radio" name="radio1">
+                                        <label for="radio2">ATM nội địa/QR CODE/Internet Banking</label>
+                                    </div>
+                                    <div>
+                                        <input style="margin: 5px;" type="radio" name="radio1">
+                                        <label for="radio3">Thanh toán bằng thẻ Visa, Master, JCB, AMEX</label>
+                                    </div>
+                            </div>
+
+                            <button style="width: 100%; height: 40px; margin: 10px 0; background-color: #0B9ED9; color: white; border-radius: 5px; font-size: 16px; border-color: white;" id="make-payment">Make payment</button>
+                        </div>
+                        
+                    </div>
+                </div>
+    
+                <div class="payment-right">
+                    <!-- <a class="continue-btn" href="{% url 'cart' %}">&#x2190; Back to Cart</a> -->
+                        <!-- <hr> -->
+                        <h3>Order Summary</h3>
+                        
+                        {% for item in items %}
+                        <div class="cart-row">
+                            <div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
+                            <div style="flex:2"><p>{{item.product.name}}</p></div>
+                            <div style="flex:1"><p>{{item.product.price}}<sup>đ</sup></p></div>
+                            <div style="flex:1"><p>x{{item.quantity}}</p></div>
+                        </div>
+                        {% endfor %}
+                        
+                        <div style="display: flex;">
+                            <h3>Items: {{cart.get_cart_items}}</h3>
+                            <h3>Total: {{cart.get_cart_total}}<sup>đ</sup></h3>
+                        </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+
+            var total = '{{cart.get_cart_total}}'
+
+            if (user != 'AnonymousUser'){
+                document.getElementById('user-info-1').innerHTML = ''
+            }
+
+            var form = document.getElementById('form')
+
+            // form.addEventListener('submit', function(e){
+            //     e.preventDefault()
+            //     console.log("Form submited")
+            //     document.getElementById('form-button').classList.add('hidden')
+            //     document.getElementById('payment-info').classList.remove('hidden')
+            // })
+
+            document.getElementById('make-payment').addEventListener('click', function(e){
+                submitFormData()
+            })
+
+            function submitFormData(){
+                console.log("Payment button clicked")
+
+                var userFormData = {
+                    'name': null,
+                    'email': null,
+                    'total': total,
+                }
+
+                var shippingInfo = {
+                    'address': null,
+                    'city': null,
+                    'district': null,
+                    'zipcode': null,
+                }
+
+                shippingInfo.address = form.address.value
+                shippingInfo.city = form.city.value
+                shippingInfo.district = form.district.value
+                shippingInfo.zipcode = form.zipcode.value
+
+                if (user == 'AnonymousUser'){
+                    userFormData.name = form.name.value
+                    userFormData.email = form.email.value
+                }
+
+                var url = '/process_order/'
+
+                fetch(url,{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type':'application/json',
+                        'X-CSRFToken':csrftoken,
+                    },
+                    body: JSON.stringify({'form': userFormData, 'shipping':shippingInfo}),
+                })
+
+                .then((response) => response.json())
+
+                .then((data) => {
+                    console.log('Success:', data);
+                    alert('Transaction completed');
+                    window.location.href = "{% url 'store' %}"
+                })
+
+            }
+        </script>
+
+{% endblock content %}

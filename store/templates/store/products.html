@@ -1,0 +1,184 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+{% block title %}Products{% endblock title %}
+
+{% block content %}
+        <script>
+            var counter = 1;
+            setInterval(function(){
+                document.getElementById('radio' + counter).checked = true;
+                counter++;
+                if(counter > 4){
+                    counter = 1;
+                }
+            }, 4000);
+        </script>
+
+
+        <div style="margin-top: 45px; display: flex; justify-content: center; align-items: center;">
+        <div class="slider">
+            <div class="slides">
+                <input type="radio" name="radio-btn" id="radio1">
+                <input type="radio" name="radio-btn" id="radio2">
+                <input type="radio" name="radio-btn" id="radio3">
+                <input type="radio" name="radio-btn" id="radio4">
+    
+                <div class="slide first">
+                    <img src="{% static 'images/slider15.jpg' %}" alt="">
+                </div>
+                <div class="slide">
+                    <img src="{% static 'images/slider12.png' %}" alt="">
+                </div>
+                <div class="slide">
+                    <img src="{% static 'images/slider3.jpg' %}" alt="">
+                </div>
+                <div class="slide">
+                    <img src="{% static 'images/slider13.jpg' %}" alt="">
+                </div>
+    
+                <div class="navigation-auto">
+                    <div class="auto-btn1"></div>
+                    <div class="auto-btn2"></div>
+                    <div class="auto-btn3"></div>
+                    <div class="auto-btn4"></div>
+                </div>
+            </div>
+            <div class="navigation-manual">
+                <label for="radio1" class="manual-btn"></label>
+                <label for="radio2" class="manual-btn"></label>
+                <label for="radio3" class="manual-btn"></label>
+                <label for="radio4" class="manual-btn"></label>
+            </div>
+        </div>
+        </div>
+
+        <section class="categories">
+            <!-- <h1 class="heading"> <span>Categories</span> </h1> -->
+            <div class="categories-container">
+                <div class="categories-box">
+                    {% for category in categories %}
+                    <a href="{% url 'search-category' category.id %}" class="category"><img src="{{category.image_category_url}}" alt=""><h1>{{category.name}} Laptop</h1></a>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <section class = "products">
+            <div class = "container">
+                <h1 class="heading"><span>our products</span></h1>
+                <div class = "product-items">
+                    {% for product in products %}
+                    <!-- single product -->
+                    <div class = "product">
+                        <div class = "product-content">
+                            <div class = "product-img">
+                                <a href="{% url 'product_detail' %}"><img src = "{{product.imageURL}}" alt = "product image"></a>
+                            </div>
+                            <div class = "product-btns">
+                                <button data-product={{product.id}} data-action="add" class="update-cart btn-cart"><span><i class="fas fa-plus"></i></span> add to cart</button>
+                                <!-- <button data-product1={{product.id}} class="view-product btn-buy"><span><i class="fas fa-shopping-cart"></i></span> buy now</button> -->
+                            </div>
+                        </div>
+
+                        <div class = "product-info">
+                            <a href = "{% url 'product_detail' %}" class = "product-name">{{product.name}}</a>
+                            <div class="product-cauhinh">
+                                <div class="product-cauhinh-group">
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 2px;" src="{% static 'images/icons/television.png' %}" alt="">
+                                        <p> {{product.monitor_size}}"</p>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 2px;" src="{% static 'images/icons/cpu-tower.png' %}" alt="">
+                                        <p> {{product.cpu}}</p>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 1px;" src="{% static 'images/icons/random-access-memory.png' %}" alt="">
+                                        <p> {{product.ram}}</p>
+                                    </div>
+                                </div>
+                                <div class="product-cauhinh-group">
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 8px" src="{% static 'images/icons/harddisk.png' %}" alt="">
+                                        <p>{{product.harddrive}}</p>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 8px" src="{% static 'images/icons/kettlebell.png' %}" alt="">
+                                        <p>{{product.weight}}kg</p>
+                                    </div>
+                                </div>
+                                <div class="product-cauhinh-group">
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 8px;" src="{% static 'images/icons/gpu.png' %}" alt="">
+                                        <p>{{product.gpu}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <p style="padding-top: 0.96rem;"> <span style="color: #0B9ED9;">{{product.price}}</span><sup>đ</sup></p>
+                        </div>
+                    </div>
+                    <!-- end of single product -->
+
+                    <!-- san pham co giam gia -->
+                    <!-- <div class = "product">
+                        <div class = "product-content">
+                            <div class = "product-img">
+                                <a href="product_detail.html"><img src = "{% static 'images/asus-rog-zephyrus-g14.png' %}" alt = "product image"></a>
+                            </div>
+                            <div class = "product-btns">
+                                <button type = "button" class = "btn-cart"><span><i class = "fas fa-plus"></i></span> add to cart</button>
+                                <button type = "button" class = "btn-buy"><span><i class = "fas fa-shopping-cart"></i></span> buy now</button>
+                            </div>
+                        </div>
+
+                        <div class = "product-info">
+                            <a href = "product_detail.html" class = "product-name">ASUS ROG Zephyrus G14 GA401QM K2041T</a>
+                            <div class="product-cauhinh">
+                                <div class="product-cauhinh-group">
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 5px;" src="{% static 'images/icons/television.png' %}" alt="">
+                                        <p> 14"</p>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 5px;" src="{% static 'images/icons/cpu-tower.png' %}" alt="">
+                                        <p> Ryzen 7</p>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 5px;" src="{% static 'images/icons/random-access-memory.png' %}" alt="">
+                                        <p> 16 GB</p>
+                                    </div>
+                                </div>
+                                <div class="product-cauhinh-group">
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 8px" src="{% static 'images/icons/harddisk.png' %}" alt="">
+                                        <p>SSD 512 GB</p>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 8px" src="{% static 'images/icons/kettlebell.png' %}" alt="">
+                                        <p>2.1kg</p>
+                                    </div>
+                                </div>
+                                <div class="product-cauhinh-group">
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 8px;" src="{% static 'images/icons/gpu.png' %}" alt="">
+                                        <p>GeForce RTX 3050 4GB</p>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <p class = "product-price">48,990,000<sup>đ</sup></p>
+                            <p class = "product-price">39,199,000<sup>đ</sup></p>
+                        </div>
+
+                        <div class = "off-info">
+                            <h2 class = "sm-title">20% off</h2>
+                        </div>
+                    </div> -->
+                    <!-- end san pham co giam gia -->
+                    {% endfor %}
+
+                </div>
+            </div>
+        </section>
+{% endblock content %}

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}{% endblock title %}</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+        <script src="https://kit.fontawesome.com/54f0cb7e4a.js" crossorigin="anonymous"></script>
+
+        <script type="text/javascript">
+            var user = '{{request.user}}'
+
+            function getToken(name){
+			var cookieValue = null;
+			if (document.cookie && document.cookie !== ''){
+				var cookies = document.cookie.split(';');
+				for (var i = 0; i < cookies.length; i++){
+					var cookie = cookies[i].trim();
+					// Does this cookie string begin with the name we want?
+					if (cookie.substring(0, name.length + 1) === (name + '=')){
+						cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+						break;
+					}
+				}
+			}
+			return cookieValue;
+		    }
+		    var csrftoken = getToken('csrftoken');
+        </script>
+
+    </head>
+
+    <body>
+        <header class="header">
+            <a href="{% url 'main' %}" class="logo"><i class="fas fa-laptop-code"></i></i>KHP</a>
+
+            <nav class="navbar">
+                <a href="{% url 'main' %}">Home</a>
+                <a href="{% url 'store' %}">Products</a>
+                <a href="{% url 'blog' %}">Blog</a>
+                <a href="{% url 'about' %}">About</a>
+                <a href="{% url 'contact' %}">Contact</a>
+            </nav>
+
+            <div class="icons">
+                <div class="fas fa-bars" id="menu-btn"></div>
+                <div class="fas fa-shopping-cart" id="cart-btn"></div>
+                <!-- <p id="cart-total">{{cartItems}}</p> -->
+                {% if user.is_authenticated %}
+                <div class="fas fa-user-check authenticated-user" id="login-btn"></div>
+                {% else %}
+                <div class="fas fa-user" id="login-btn"></div>
+                {% endif %}
+            </div>
+
+            <div class="small-cart">
+                <h2>Cart</h2>
+                <form action="">
+                    <table>
+                        {% for item in items %}
+                        <tr>
+                            <td>
+                                <div class="small-cart-info">
+                                    <img src="{{item.product.imageURL}}" alt="">
+                                    <div style="align-items: center; padding: 20px 0px;">
+                                        <p>{{item.product.name}}</p>
+                                        <!-- <small>Price: $50</small> -->
+                                        <p><span class="sm-cart-product-price">{{item.product.price}}</span><sup style="color: #0B9ED9;">đ</sup></p>
+                                        <br>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><p>x {{item.quantity}}</p></td>
+                            <!-- <td><input type="number" value="{{item.quantity}}"></td> -->
+                            <!-- <td><a href="">x</a></td> -->
+                        </tr>
+                        {% endfor %}
+                    </table>
+
+                    <div class="price-total">
+                        <p style="margin-right: 20px;">Tổng tiền: <span style="color: #0B9ED9;">{{cart.get_cart_total}}</span><sup style="color: #0B9ED9;">đ</sup></p>
+                    </div>
+                    <div class="small-cart-btn">
+                        <a href="{% url 'checkout' %}" class="dat-hang">Đặt hàng</a>
+                        <a href="{% url 'cart' %}" class="xem-gio-hang">Xem giỏ hàng</a>
+                    </div>
+                    
+                </form>
+            </div>
+            <form method=POST action="" class="login-form">
+
+                {% if messages %}
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                {% endif %}
+
+                {% if user.is_authenticated %}
+
+                    <h2>{{request.user.customer.name}}</h2>
+                    <br>
+                    <hr>
+                    <a href="{% url 'logout' %}" class="btn">Logout</a>
+
+                {% else %}
+
+                    {% csrf_token %}
+
+                    <input type="username" placeholder="your username" class="box" name="username">
+                    <input type="password" placeholder="your password" class="box" name="password">
+
+                    <input type="submit" value="login now" class="btn">
+                    <p>don't have an account <a href="{% url 'register' %}">create now</a></p>
+
+                {% endif %}
+            </form>
+            
+            <!-- <div class="login-form">
+                <h3>login now</h3>
+                <input type="email" placeholder="your email" class="box">
+                <input type="password" placeholder="your password" class="box">
+                <p>forget your password <a href="#">click here</a></p>
+                <p>don't have an account <a href="{% url 'register' %}">create now</a></p>
+                <input type="submit" value="login now" class="btn">
+            </div> -->
+                
+        </header>
+
+{% block content %}
+{% endblock content %}
+
+        <!-- footer section -->
+        <section class="footer">
+            <div class="box-footer-container">
+                
+                <div class="box-footer">
+                    <h3> KHP <i class="fas fa-laptop-code"></i> </h3>
+                    <p></p>
+                    <div class="share">
+                        <a href="#" class="fab fa-facebook-f"></a>
+                        <a href="#" class="fab fa-twitter"></a>
+                        <a href="#" class="fab fa-instagram"></a>
+                        <a href="#" class="fab fa-linkedin"></a>
+                    </div>
+                </div>
+                
+                <div class="box-footer">
+                    <h3>contact info</h3>
+                    <a href="#" class="links"> <i class="fas fa-phone"></i> +84 123-456-789 </a>
+                    <a href="#" class="links"> <i class="fas fa-phone"></i> +84 123-456-789 </a>
+                    <a href="#" class="links"> <i class="fas fa-envelope"></i> contactp@khp.com </a>
+                    <a href="#" class="links"> <i class="fas fa-map-marker-alt"></i> Can Tho, Vietnam</a>
+                </div>
+                
+                <div class="box-footer">
+                    <h3>quick links</h3>
+                    <a href="{% url 'main' %}" class="links"> <i class="fas fa-arrow-right"></i> home </a>
+                    <a href="{% url 'store' %}" class="links"> <i class="fas fa-arrow-right"></i> products </a>
+                    <a href="{% url 'blog' %}" class="links"> <i class="fas fa-arrow-right"></i> blogs </a>
+                    <a href="{% url 'about' %}" class="links"> <i class="fas fa-arrow-right"></i> about </a>
+                    <a href="{% url 'contact' %}" class="links"> <i class="fas fa-arrow-right"></i> contact </a>
+                </div>
+                
+                <div class="box-footer">
+                    <h3>newsletter</h3>
+                    <p>subscribe for latest updates</p>
+                    <input type="email" placeholder="your email" class="email">
+                    <input type="submit" value="subscribe" class="btn">
+                    <img src="{% static 'images/payment.png' %}" class="payment-img" alt="">
+                </div>
+                
+            </div>
+        </section>
+        <!-- footer section ends -->
+        
+        <script src="{% static 'js/cart.js' %}"></script>
+
+    </body>
+</html>

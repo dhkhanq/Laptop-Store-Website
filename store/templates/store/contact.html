@@ -1,0 +1,66 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block title %}Contact{% endblock title %}
+
+{% block content %}
+
+        <div class="contact-container">
+            <h2>Connect with us</h2>
+            <p>We would love to respond to your queries and help you succeed. Feel free to get in touch with us.</p>
+            <div class="contact-box">
+                <div class="contact-left">
+                    <h3>Send your request</h3>
+                    
+                    <form action="">
+
+                        <div class="contact-input-row">
+                            <div class="contact-input-group">
+                                <label for="">Name</label>
+                                <input type="text" placeholder="Your name">
+                            </div>
+                            <div class="contact-input-group">
+                                <label for="">Phone</label>
+                                <input type="text" placeholder="Your phone">
+                            </div>
+                        </div>
+
+                        <div class="contact-input-row">
+                            <div class="contact-input-group">
+                                <label for="">Email</label>
+                                <input type="email" placeholder="Your email">
+                            </div>
+                            <div class="contact-input-group">
+                                <label for="">Product</label>
+                                <input type="text" placeholder="Product">
+                            </div>
+                        </div>
+
+                        <label for="">Message</label>
+                        <textarea name="" id="" cols="30" rows="5" placeholder="Your massage"></textarea>
+                        
+                        <button type="submit">Send</button>
+
+                    </form>
+
+                </div>
+                <div class="contact-right">
+                    <h3>Reach Us</h3>
+                    <table>
+                        <tr>
+                            <td>Email</td>
+                            <td>contactus@khp.com</td>
+                        </tr>
+                        <tr>
+                            <td>Phone</td>
+                            <td>+84 123-456-789</td>
+                        </tr>
+                        <tr>
+                            <td>Address</td>
+                            <td>Can Tho, Vietnam</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+{% endblock content %}

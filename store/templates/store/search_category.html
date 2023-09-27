@@ -1,0 +1,72 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+
+{% block content %}
+<section style="margin-top: 120px; margin-left: 100px;">
+    <a class="btn" href="{% url 'store' %}">&#x2190; All products</a>
+</section>
+
+<section class = "products">
+    <div class = "container">
+        <h1 class="heading"><span>{{category.name}} Laptop</span></h1>
+        <div class = "product-items">
+            {% for product in products %}
+            <!-- single product -->
+            <div class = "product">
+                <div class = "product-content">
+                    <div class = "product-img">
+                        <a href="{% url 'product_detail' %}"><img src = "{{product.imageURL}}" alt = "product image"></a>
+                    </div>
+                    <div class = "product-btns">
+                        <button data-product={{product.id}} data-action="add" class="update-cart btn-cart"><span><i class="fas fa-plus"></i></span> add to cart</button>
+                        <!-- <button data-product1={{product.id}} class="view-product btn-buy"><span><i class="fas fa-shopping-cart"></i></span> buy now</button> -->
+                    </div>
+                </div>
+
+                <div class = "product-info">
+                    <a href = "{% url 'product_detail' %}" class = "product-name">{{product.name}}</a>
+                    <div class="product-cauhinh">
+                        <div class="product-cauhinh-group">
+                            <div style="display: flex;">
+                                <img style="width: 16px; height: 16px; margin-right: 2px;" src="{% static 'images/icons/television.png' %}" alt="">
+                                <p> {{product.monitor_size}}"</p>
+                            </div>
+                            <div style="display: flex;">
+                                <img style="width: 16px; height: 16px; margin-right: 2px;" src="{% static 'images/icons/cpu-tower.png' %}" alt="">
+                                <p> {{product.cpu}}</p>
+                            </div>
+                            <div style="display: flex;">
+                                <img style="width: 16px; height: 16px; margin-right: 1px;" src="{% static 'images/icons/random-access-memory.png' %}" alt="">
+                                <p> {{product.ram}}</p>
+                            </div>
+                        </div>
+                        <div class="product-cauhinh-group">
+                            <div style="display: flex;">
+                                <img style="width: 16px; height: 16px; margin-right: 8px" src="{% static 'images/icons/harddisk.png' %}" alt="">
+                                <p>{{product.harddrive}}</p>
+                            </div>
+                            <div style="display: flex;">
+                                <img style="width: 16px; height: 16px; margin-right: 8px" src="{% static 'images/icons/kettlebell.png' %}" alt="">
+                                <p>{{product.weight}}kg</p>
+                            </div>
+                        </div>
+                        <div class="product-cauhinh-group">
+                            <div style="display: flex;">
+                                <img style="width: 16px; height: 16px; margin-right: 8px;" src="{% static 'images/icons/gpu.png' %}" alt="">
+                                <p>{{product.gpu}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="padding-top: 0.96rem;">{{product.price}}<sup>đ</sup></p>
+                </div>
+            </div>
+            <!-- end of single product -->
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

@@ -1,0 +1,276 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
+        <section class="home" id="home">
+
+            <div class="content">
+                <h3>genuine and <span>quality</span> products for you</h3>
+                <p>Laptop products are distributed and have genuine warranties with guaranteed quality.</p>
+                <a href="#" class="btn">shop now</a>
+            </div>
+        
+        </section>
+
+        <!-- _______________________________________________________Offer Section________________________________________________________________ -->
+
+        <section class="offer">
+            <div class="offer-container">
+                <h1 class="heading"> <span>out offers</span> </h1>
+                <div class="offer-box">
+                    <div class="offer-left">
+                        <img src="images/web-traffic.png" alt="">
+                        <div class="left-offer-detail-box">
+                            <h1>
+                                Ưu đãi dành cho Sinh viên
+                            </h1>
+                            <h2 style="color: white;">
+                              Upto 50% Off
+                            </h2>
+                            <a href="">
+                              Shop Now
+                            </a>
+                          </div>
+                    </div>
+                    <div class="offer-right">
+                        <div class="offer-right-top">
+                            <div class="right-offer-detail-box">
+                                <h2>
+                                  Upto 20% Off
+                                </h2>
+                                <a href="">
+                                  Shop Now
+                                </a>
+                              </div>
+                            <img src="images/laptop (1).png" alt="">
+
+                        </div>
+                        <div class="offer-right-bottom">
+                            <div class="right-offer-detail-box">
+                                <h2 style="color: rgb(214, 214, 214);">
+                                  Upto 20% Off
+                                </h2>
+                                <a style="color: rgb(214, 214, 214); border-color: rgb(214, 214, 214);" href="">
+                                  Shop Now
+                                </a>
+                              </div>
+                              <img src="images/lapto3p.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <section class = "products">
+            <div class = "container">
+                <h1 class="heading"><span>hot products</span></h1>
+                <div class = "product-items">
+
+                    <!-- single product -->
+                    <div class = "product">
+                        <div class = "product-content">
+                            <div class = "product-img">
+                                <a href="{% url 'product_detail' %}"><img src = "{% static 'images/D44B92F1-6550-404A-88C3-DDC19159F3B0.png' %}" alt = "product image"></a>
+                            </div>
+                            <div class = "product-btns">
+                                <button data-product={{product.id}} data-action="add" class="update-cart btn-cart"><span><i class="fas fa-plus"></i></span> add to cart</button>
+                                <!-- <button data-product1={{product.id}} class="view-product btn-buy"><span><i class="fas fa-shopping-cart"></i></span> buy now</button> -->
+                            </div>
+                        </div>
+
+                        <div class = "product-info">
+                            <a href = "{% url 'product_detail' %}" class = "product-name">ASUS ROG Zephyrus G14 GA401QM K2041T</a>
+                            <div class="product-cauhinh">
+                                <div class="product-cauhinh-group">
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 2px;" src="{% static 'images/icons/television.png' %}" alt="">
+                                        <p> 14"</p>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 2px;" src="{% static 'images/icons/cpu-tower.png' %}" alt="">
+                                        <p> Ryzen 7</p>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 1px;" src="{% static 'images/icons/random-access-memory.png' %}" alt="">
+                                        <p> 16 GB</p>
+                                    </div>
+                                </div>
+                                <div class="product-cauhinh-group">
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 8px" src="{% static 'images/icons/harddisk.png' %}" alt="">
+                                        <p> SSD 512 GB</p>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 8px" src="{% static 'images/icons/kettlebell.png' %}" alt="">
+                                        <p>1.7kg</p>
+                                    </div>
+                                </div>
+                                <div class="product-cauhinh-group">
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 8px;" src="{% static 'images/icons/gpu.png' %}" alt="">
+                                        <p> GeForce RTX 3050 4GB</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <p style="padding-top: 0.96rem;">39199000<sup>đ</sup></p>
+                        </div>
+                    </div>
+                    <!-- end of single product -->
+
+                    <div class = "product">
+                        <div class = "product-content">
+                            <div class = "product-img">
+                                <a href="{% url 'product_detail' %}"><img src = "{% static 'images/asus_rog_flow_hot_prod.png' %}" alt = "product image"></a>
+                            </div>
+                            <div class = "product-btns">
+                                <button data-product={{product.id}} data-action="add" class="update-cart btn-cart"><span><i class="fas fa-plus"></i></span> add to cart</button>
+                                <!-- <button data-product1={{product.id}} class="view-product btn-buy"><span><i class="fas fa-shopping-cart"></i></span> buy now</button> -->
+                            </div>
+                        </div>
+
+                        <div class = "product-info">
+                            <a href = "{% url 'product_detail' %}" class = "product-name">Asus FLow Gaming GV301QC-K6052T</a>
+                            <div class="product-cauhinh">
+                                <div class="product-cauhinh-group">
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 2px;" src="{% static 'images/icons/television.png' %}" alt="">
+                                        <p> 13.4"</p>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 2px;" src="{% static 'images/icons/cpu-tower.png' %}" alt="">
+                                        <p> Ryzen 9</p>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 1px;" src="{% static 'images/icons/random-access-memory.png' %}" alt="">
+                                        <p> 16 GB</p>
+                                    </div>
+                                </div>
+                                <div class="product-cauhinh-group">
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 8px" src="{% static 'images/icons/harddisk.png' %}" alt="">
+                                        <p> SSD 512 GB</p>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 8px" src="{% static 'images/icons/kettlebell.png' %}" alt="">
+                                        <p> 1.3 kg</p>
+                                    </div>
+                                </div>
+                                <div class="product-cauhinh-group">
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 8px;" src="{% static 'images/icons/gpu.png' %}" alt="">
+                                        <p> GeForce RTX3050 4GB</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <p style="padding-top: 0.96rem;">39999000<sup>đ</sup></p>
+                        </div>
+                    </div>
+                    <!-- end of single product -->
+
+                    <div class = "product">
+                        <div class = "product-content">
+                            <div class = "product-img">
+                                <a href="{% url 'product_detail' %}"><img src = "{% static 'images/asus_rog_strix_scar_15_hot_prod.png' %}" alt = "product image"></a>
+                            </div>
+                            <div class = "product-btns">
+                                <button data-product={{product.id}} data-action="add" class="update-cart btn-cart"><span><i class="fas fa-plus"></i></span> add to cart</button>
+                                <!-- <button data-product1={{product.id}} class="view-product btn-buy"><span><i class="fas fa-shopping-cart"></i></span> buy now</button> -->
+                            </div>
+                        </div>
+
+                        <div class = "product-info">
+                            <a href = "{% url 'product_detail' %}" class = "product-name">Asus ROG Strix SCAR 15 G533QM HF089T</a>
+                            <div class="product-cauhinh">
+                                <div class="product-cauhinh-group">
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 2px;" src="{% static 'images/icons/television.png' %}" alt="">
+                                        <p> 15.6"</p>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 2px;" src="{% static 'images/icons/cpu-tower.png' %}" alt="">
+                                        <p> Ryzen 9</p>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 1px;" src="{% static 'images/icons/random-access-memory.png' %}" alt="">
+                                        <p> 16 GB</p>
+                                    </div>
+                                </div>
+                                <div class="product-cauhinh-group">
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 8px" src="{% static 'images/icons/harddisk.png' %}" alt="">
+                                        <p>SSD 1 TB</p>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 8px" src="{% static 'images/icons/kettlebell.png' %}" alt="">
+                                        <p>2.5 kg</p>
+                                    </div>
+                                </div>
+                                <div class="product-cauhinh-group">
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 8px;" src="{% static 'images/icons/gpu.png' %}" alt="">
+                                        <p>GeForce RTX 3060 6GB</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <p style="padding-top: 0.96rem;">49990000<sup>đ</sup></p>
+                        </div>
+                    </div>
+                    <!-- end of single product -->
+
+                    <div class = "product">
+                        <div class = "product-content">
+                            <div class = "product-img">
+                                <a href="{% url 'product_detail' %}"><img src = "{% static 'images/asus_tuf_dash_15_hot_prod.png' %}" alt = "product image"></a>
+                            </div>
+                            <div class = "product-btns">
+                                <button data-product={{product.id}} data-action="add" class="update-cart btn-cart"><span><i class="fas fa-plus"></i></span> add to cart</button>
+                                <!-- <button data-product1={{product.id}} class="view-product btn-buy"><span><i class="fas fa-shopping-cart"></i></span> buy now</button> -->
+                            </div>
+                        </div>
+
+                        <div class = "product-info">
+                            <a href = "{% url 'product_detail' %}" class = "product-name">Asus TUF Dash FX516PE HN005T</a>
+                            <div class="product-cauhinh">
+                                <div class="product-cauhinh-group">
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 2px;" src="{% static 'images/icons/television.png' %}" alt="">
+                                        <p> 15.6"</p>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 2px;" src="{% static 'images/icons/cpu-tower.png' %}" alt="">
+                                        <p> Core i7</p>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 1px;" src="{% static 'images/icons/random-access-memory.png' %}" alt="">
+                                        <p> 8 GB</p>
+                                    </div>
+                                </div>
+                                <div class="product-cauhinh-group">
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 8px" src="{% static 'images/icons/harddisk.png' %}" alt="">
+                                        <p>SSD 512 GB</p>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 8px" src="{% static 'images/icons/kettlebell.png' %}" alt="">
+                                        <p>2.0 kg</p>
+                                    </div>
+                                </div>
+                                <div class="product-cauhinh-group">
+                                    <div style="display: flex;">
+                                        <img style="width: 16px; height: 16px; margin-right: 8px;" src="{% static 'images/icons/gpu.png' %}" alt="">
+                                        <p>GeForce RTX 3050Ti 4GB</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <p style="padding-top: 0.96rem;">27900000<sup>đ</sup></p>
+                        </div>
+                    </div>
+                    <!-- end of single product -->
+
+                </div>
+            </div>
+        </section>
+{% endblock content %}
